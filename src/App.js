@@ -7,7 +7,33 @@ class App extends Component{
     {
         super(props);
         this.state= {
-            board: Array(9).fill(null)
+            board: Array(9).fill(null),
+            player: "X"
+        }
+    }
+
+    checkWinner = () =>{
+
+        let winLines =
+        [
+            ['0','1','2'],
+            ['3','4','5'],
+            ['6','7','8'],
+            ['0','3','6'],
+            ['1','4','7'],
+            ['2','5','8'],
+            ['0','4','8'],
+            ['2','4','6'],
+
+        ]
+
+        for (let index= 0; index < winLines.length; index++){
+            const[a,b,c] = winLines[index];
+
+            if(this.state.board[a] && this.state.board[a] === this.state.board[b] && this.state.board[a] === this.state.board[c]){
+                alert('gameover');
+            }
+
         }
     }
 
@@ -15,15 +41,27 @@ class App extends Component{
 
         let newBoard = this.state.board;
 
-        newBoard[index]= 'X';
+        if(newBoard[index] === null)
+        {
 
-        this.setState({
-            board: newBoard
-        })
+            newBoard[index]= this.state.player;
+           
+            let newPlayer = this.state.player === 'X'?"O":"X"
+
+
+            this.setState(
+            {
+                board: newBoard,
+                player: newPlayer
+            })
+
+            this.checkWinner()
 
         // this.state.board[index]= 'X';
-        console.log(this.state.board); 
+        // console.log(this.state.board); 
+        }
     }
+
 
     render() {
 
@@ -49,7 +87,7 @@ class App extends Component{
 
             </div> 
             
-        )
+        );
     }
 
 }
