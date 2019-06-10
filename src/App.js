@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 
-class App extends Component{
+class App extends Component
+{
 
     constructor(props)
     {
@@ -37,7 +38,10 @@ class App extends Component{
         }
     }
 
-    handleClick = (index)=>{
+  
+
+    handleClick = (index)=>
+    {
 
         let newBoard = this.state.board;
 
@@ -57,13 +61,16 @@ class App extends Component{
 
             this.checkWinner()
 
+         
+        }
+
+               
         // this.state.board[index]= 'X';
         // console.log(this.state.board); 
-        }
     }
 
-
-    render() {
+    render() 
+    {
 
         const box = this.state.board.map( 
             (box,index) => 
