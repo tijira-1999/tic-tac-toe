@@ -22,15 +22,7 @@ class App extends React.Component{
 
                 <div className="board">
                     
-                    <div className="box"></div> 
-                    <div className="box"></div>  
-                    <div className="box"></div>  
-                    <div className="box"></div>  
-                    <div className="box"></div>  
-                    <div className="box"></div>  
-                    <div className="box"></div>  
-                    <div className="box"></div>  
-                    <div className="box"></div> 
+                    {box}
 
                 </div> 
 
