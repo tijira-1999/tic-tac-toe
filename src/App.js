@@ -1,19 +1,29 @@
 import React, {Component} from 'react';
 import './App.css';
 
-class App extends React.Component{
+class App extends Component{
 
     constructor(props)
     {
         super(props);
         this.state= {
-            board: Array(9).fill("X")
+            board: Array(9).fill(null)
         }
+    }
+
+    handleClick(e){
+        console.log(e.target); 
     }
 
     render() {
 
-        const box = this.state.board.map( box => <div className="box">{box}</div>  )
+        const box = this.state.board.map( 
+            (box,index) => 
+            <div className="box" key={index} 
+            onClick={(e) => this.handleClick(e)}>
+            {box}
+            </div> 
+             );
 
         return(
             <div className="container">
