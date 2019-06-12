@@ -77,6 +77,10 @@ class App extends Component
 
     setPlayer = (player)=>{
 
+        this.setState({
+            player : player
+        })
+
         // console.log(player);
 
     }
