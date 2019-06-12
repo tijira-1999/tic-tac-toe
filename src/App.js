@@ -10,7 +10,7 @@ class App extends Component
         super(props);
         this.state= {
             board: Array(9).fill(null),
-            player: "X",
+            player: null,
             winner: null
         }
     }
@@ -51,28 +51,31 @@ class App extends Component
 
         let newBoard = this.state.board;
 
-        if(newBoard[index] === null && !this.state.winner)
-        {
+        if(this.state.player && !this.state.winner){
 
-            newBoard[index]= this.state.player;
-           
-            let newPlayer = this.state.player === 'X'?"O":"X"
-
-
-            this.setState(
+            if(newBoard[index] === null)
             {
-                board: newBoard,
-                player: newPlayer
-            })
 
-            this.checkWinner()
+                newBoard[index]= this.state.player;
+            
+                let newPlayer = this.state.player === 'X'?"O":"X"
 
-         
-        }
 
-               
-        // this.state.board[index]= 'X';
-        // console.log(this.state.board); 
+                this.setState(
+                {
+                    board: newBoard,
+                    player: newPlayer
+                })
+
+                this.checkWinner()
+
+
+                // this.state.board[index]= 'X';
+               // console.log(this.state.board); 
+            
+            }
+        }       
+       
     }
 
     setPlayer = (player)=>{
