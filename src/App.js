@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import Player from './components/playerselect';
 
 class App extends Component
 {
@@ -9,7 +10,8 @@ class App extends Component
         super(props);
         this.state= {
             board: Array(9).fill(null),
-            player: "X"
+            player: "X",
+            winner: null
         }
     }
 
@@ -33,6 +35,10 @@ class App extends Component
 
             if(this.state.board[a] && this.state.board[a] === this.state.board[b] && this.state.board[a] === this.state.board[c]){
                 alert('gameover');
+
+                this.setState({
+                    winner: this.state.player
+                })
             }
 
         }
@@ -45,7 +51,7 @@ class App extends Component
 
         let newBoard = this.state.board;
 
-        if(newBoard[index] === null)
+        if(newBoard[index] === null && !this.state.winner)
         {
 
             newBoard[index]= this.state.player;
@@ -69,6 +75,13 @@ class App extends Component
         // console.log(this.state.board); 
     }
 
+    setPlayer = (player)=>{
+
+        // console.log(player);
+
+    }
+
+
     render() 
     {
 
@@ -85,6 +98,7 @@ class App extends Component
             <div className="container">
 
                 <h1>Tic tac toe App</h1> 
+                <Player player={(e) => this.setPlayer(e)} />
 
                 <div className="board">
                     
