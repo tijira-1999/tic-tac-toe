@@ -88,7 +88,6 @@ class App extends Component
 
     }
 
-
     render() 
     {
 
@@ -101,12 +100,16 @@ class App extends Component
             </div> 
              );
 
+             let status = this.state.player ? <h2>Next player is {this.state.player} </h2> : <Player player={(e) => this.setPlayer(e)} />;
+
+
         return(
             <div className="container">
 
                 <h1>Tic tac toe App</h1> 
-                <Player player={(e) => this.setPlayer(e)} />
 
+                {status}
+                
                 <div className="board">
                     
                     {box}
