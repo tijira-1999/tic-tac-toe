@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import Player from './components/playerselect';
+import Status from './components/Status';
 
 class App extends Component
 {
@@ -31,10 +31,10 @@ class App extends Component
         ]
 
         for (let index= 0; index < winLines.length; index++){
-            const[a,b,c] = winLines[index];
+            const [a,b,c] = winLines[index];
 
             if(this.state.board[a] && this.state.board[a] === this.state.board[b] && this.state.board[a] === this.state.board[c]){
-                alert('gameover');
+                alert('{this.state.player} wins');
 
                 this.setState({
                     winner: this.state.player
@@ -88,10 +88,8 @@ class App extends Component
 
     }
 
-    render() 
-    {
-
-        const box = this.state.board.map( 
+    renderBoxes = () =>{
+        return this.state.board.map( 
             (box,index) => 
             <div className="box" 
             key={index} 
@@ -99,20 +97,21 @@ class App extends Component
             {box}
             </div> 
              );
-
-             let status = this.state.player ? <h2>Next player is {this.state.player} </h2> : <Player player={(e) => this.setPlayer(e)} />;
-
+    }
+    
+    render() 
+    {
 
         return(
             <div className="container">
 
                 <h1>Tic tac toe App</h1> 
 
-                {status}
+                <Status player = {this.state.player} setPlayer = {(e) => this.setPlayer(e)} />
                 
                 <div className="board">
                     
-                    {box}
+                    {this.renderBoxes()}
 
                 </div> 
 
