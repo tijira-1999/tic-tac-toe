@@ -30,11 +30,18 @@ class App extends Component
 
         ]
 
+        this.checkMatch(winLines);
+    }
+
+    checkMatch(winLines){
+        
         for (let index= 0; index < winLines.length; index++){
             const [a,b,c] = winLines[index];
 
-            if(this.state.board[a] && this.state.board[a] === this.state.board[b] && this.state.board[a] === this.state.board[c]){
-                alert('{this.state.player} wins');
+            let board = this.state.board
+
+            if(board[a] && board[a] === board[b] && board[a] === board[c]){
+                alert('gameover');
 
                 this.setState({
                     winner: this.state.player
@@ -98,6 +105,14 @@ class App extends Component
             </div> 
              );
     }
+
+    reset(){
+        this.setState({
+            player : null,
+            winner : null,
+            board : Array(9).fill(null)
+        });
+    }
     
     render() 
     {
@@ -107,13 +122,19 @@ class App extends Component
 
                 <h1>Tic tac toe App</h1> 
 
-                <Status player = {this.state.player} setPlayer = {(e) => this.setPlayer(e)} />
+                <Status player = {this.state.player} 
+                    setPlayer = {(e) => this.setPlayer(e)} 
+                    winner = {this.state.winner}
+                />
                 
                 <div className="board">
                     
                     {this.renderBoxes()}
 
                 </div> 
+                
+            <button disabled={!this.state.winner} onClick={() => this.reset()}>Reset</button>
+
 
             </div> 
             
